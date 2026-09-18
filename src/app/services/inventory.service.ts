@@ -18,9 +18,9 @@ export class InventoryService {
   }
 
   // Envia uma nova máquina para ser gravada na planilha
-  addMachine(maquina: Machine): Observable<any> {
+  addMachine(newMachine: Machine): Observable<any> {
     // Usamos text/plain para contornar restrições de CORS do Apps Script
     const headers = new HttpHeaders({ 'Content-Type': 'text/plain' });
-    return this.http.post(this.apiUrl, JSON.stringify(maquina), { headers });
+    return this.http.post(this.apiUrl, JSON.stringify(newMachine), { headers });
   }
 }
