@@ -4,7 +4,7 @@
             <h2>Ativos Cadastrados</h2>
             <p>Gerenciamento simplificado de equipamentos</p>
         </div>
-        <button mat-flat-button color="primary" (click)="carregarMaquinas()" [disabled]="loading()">
+        <button mat-flat-button color="primary" (click)="loadMachines(true)" [disabled]="loading()">
             <mat-icon>refresh</mat-icon>
             {{ loading() ? 'Atualizando...' : 'Atualizar' }}
         </button>
@@ -29,12 +29,12 @@
             @for (machine of machines(); track $index) {
             <div class="asset-card">
                 <div class="card-left">
-                <span class="user-name">{{ machine.user || 'Sem usuário' }}</span>
-                <span class="user-email">{{ machine.email || 'Sem e-mail cadastrado' }}</span>
+                <span class="user-name">{{ machine.Usuario || 'Sem usuário' }}</span>
+                <span class="user-email">{{ machine.Email || 'Sem e-mail cadastrado' }}</span>
                 </div>
 
                 <div class="card-right">
-                <h3 class="machine-title">{{ machine.name || 'Máquina não identificada' }}</h3>
+                <h3 class="machine-title">{{ machine.Nome_da_Maquina || 'Máquina não identificada' }}</h3>
                 </div>
             </div>
             }
