@@ -1,0 +1,28 @@
+<mat-toolbar color="primary" class="app-header">
+  <div class="logo-area">
+    <mat-icon>computer</mat-icon>
+    <span>Controle de Inventário</span>
+  </div>
+
+  <span class="spacer"></span>
+
+  <nav class="nav-links">
+
+    @if (this.currentRoute == "/add-machine") {
+            <a mat-button routerLink="/machines" routerLinkActive="active-link" (click)="updateCurrentRoute('/machines')">
+                <mat-icon>list_alt</mat-icon>
+            <span>Máquinas</span>
+        </a>
+    } @else if (this.currentRoute == "/machines") {
+        <a mat-button routerLink="/add-machine" routerLinkActive="active-link" (click)="updateCurrentRoute('/add-machine')">
+            <mat-icon>add_circle</mat-icon>
+            <span>Adicionar Máquina</span>
+        </a>
+    }
+
+    <a mat-button routerLink="/about" routerLinkActive="active-link">
+      <mat-icon class="material-symbols-outlined">book_3</mat-icon>
+      <span>Sobre</span>
+    </a>
+  </nav>
+</mat-toolbar>

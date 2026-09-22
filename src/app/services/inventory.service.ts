@@ -2,25 +2,23 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Machine } from '../models/machine';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InventoryService {
-  // Substitua com a sua URL do Google Apps Script (a que termina em /exec)
-  private apiUrl = 'SUA_URL_DO_GOOGLE_APPS_SCRIPT_AQUI';
+  private readonly apiUrl = environment.machinesInventoryUrl;
 
   constructor(private http: HttpClient) {}
 
-  // Busca a lista de máquinas cadastradas
   getMachines(): Observable<Machine[]> {
     return this.http.get<Machine[]>(this.apiUrl);
   }
 
-  // Envia uma nova máquina para ser gravada na planilha
-  addMachine(maquina: Machine): Observable<any> {
-    // Usamos text/plain para contornar restrições de CORS do Apps Script
+  addMachine(newMachine: Machine): Observable<any> {
+    // text/plain para contornar restrições de CORS do Apps Script
     const headers = new HttpHeaders({ 'Content-Type': 'text/plain' });
-    return this.http.post(this.apiUrl, JSON.stringify(maquina), { headers });
+    return this.http.post(this.apiUrl, JSON.stringify(newMachine), { headers });
   }
 }

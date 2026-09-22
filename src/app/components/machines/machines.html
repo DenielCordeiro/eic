@@ -1,0 +1,43 @@
+<section class="inventory-section">
+    <header class="header">
+        <div class="title-area">
+            <h2>Ativos Cadastrados</h2>
+            <p>Gerenciamento simplificado de equipamentos</p>
+        </div>
+        <button mat-flat-button color="primary" (click)="carregarMaquinas()" [disabled]="loading()">
+            <mat-icon>refresh</mat-icon>
+            {{ loading() ? 'Atualizando...' : 'Atualizar' }}
+        </button>
+    </header>
+
+    @if (loading()) {
+        <div class="state-container">
+            <mat-spinner diameter="36"></mat-spinner>
+            <p>Buscando registros...</p>
+        </div>
+    } @else if (error()) {
+        <div class="state-container error">
+            <mat-icon>error_outline</mat-icon>
+            <p>{{ error() }}</p>
+        </div>
+    } @else if (machines().length === 0) {
+        <div class="state-container">
+            <p>Nenhuma máquina cadastrada até o momento.</p>
+        </div>
+    } @else {
+        <div class="card-list">
+            @for (machine of machines(); track $index) {
+            <div class="asset-card">
+                <div class="card-left">
+                <span class="user-name">{{ machine.user || 'Sem usuário' }}</span>
+                <span class="user-email">{{ machine.email || 'Sem e-mail cadastrado' }}</span>
+                </div>
+
+                <div class="card-right">
+                <h3 class="machine-title">{{ machine.name || 'Máquina não identificada' }}</h3>
+                </div>
+            </div>
+            }
+        </div>
+    }
+</section>
