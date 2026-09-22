@@ -18,4 +18,10 @@ import { MatIconModule } from '@angular/material/icon';
     styleUrl: './header.sass',
     templateUrl: './header.html',
 })
-export class Header {}
+export class Header {
+    public currentRoute: string = window.location.pathname;
+
+    public updateCurrentRoute(route: string): string {
+       return this.currentRoute = route;
+    }
+}
