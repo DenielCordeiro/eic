@@ -7,9 +7,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 import { InventoryService } from '../../services/inventory.service';
-import { MachineInterface } from '../../models/machine.interface';
-import { UpdateMachine } from './update-machine/update-machine';
-import { DeleteMachine } from './delete-machine/delete-machine';
+import { MachineInterface } from '../../interfaces/machine.interface';
+
+import { Machine } from './machine/machine';
 
 @Component({
     selector: 'app-machines',
@@ -54,29 +54,13 @@ export class Machines {
         });
     }
 
-    public updatingMachine(machine: MachineInterface): void {
-        const dialogRef = this.dialog.open(UpdateMachine, {
-            width: '600px',
+    public openMachineDetails(machine: MachineInterface): void {
+        const dialogRef = this.dialog.open(Machine, {
             data: machine
         });
 
-        dialogRef.afterClosed().subscribe((updated) => {
-            if (updated) {
-                this.loadMachines(false);
-            }
-        });
-    }
-
-    public deletingMachine(machine: MachineInterface): void {
-        const dialogRef = this.dialog.open(DeleteMachine, {
-            width: '400px',
-            data: machine
-        });
-
-        dialogRef.afterClosed().subscribe((confirmed) => {
-            if (confirmed) {
-                this.loadMachines(false);
-            }
+        dialogRef.afterClosed().subscribe((result) => {
+            this.loadMachines(result);
         });
     }
 }

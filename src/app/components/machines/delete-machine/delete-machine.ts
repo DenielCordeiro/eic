@@ -1,14 +1,20 @@
 import { Component, Inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
-import { MachineInterface } from '../../../models/machine.interface';
+import { MachineInterface } from '../../../interfaces/machine.interface';
 
 @Component({
     selector: 'app-delete-machine',
-     standalone: true,
+    standalone: true,
     imports: [
+        CommonModule,
         MatDialogModule,
+        MatButtonModule,
+        MatIconModule
     ],
     styleUrl: './delete-machine.sass',
     templateUrl: './delete-machine.html',

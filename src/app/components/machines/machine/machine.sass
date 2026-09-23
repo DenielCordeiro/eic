@@ -1,0 +1,128 @@
+$purple-primary: #7b1fa2
+$purple-light: #f3e5f5
+$text-dark: #2c3e50
+$text-muted: #6c757d
+$bg-card: #f8f9fa
+$border-color: #e9ecef
+
+.machine-details-container
+    padding: 1.25rem
+    max-width: 580px
+    border-radius: 16px
+    font-family: inherit
+
+.details-header
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding-bottom: 0.75rem
+    border-bottom: 1px solid $border-color
+
+    .header-title
+        display: flex
+        align-items: center
+        gap: 0.5rem
+
+        .title-icon
+            color: $purple-primary
+
+        h2
+            margin: 0
+            font-size: 1.2rem
+            font-weight: 700
+            color: $text-dark
+
+    .header-actions
+        display: flex
+        align-items: center
+        gap: 0.25rem
+
+.details-content
+    padding-top: 1rem !important
+    display: flex
+    flex-direction: column
+    gap: 1.25rem
+
+.machine-badge-card
+    background: $purple-light
+    border-radius: 12px
+    padding: 0.85rem 1.1rem
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    gap: 0.2rem
+
+    .label
+        font-size: 0.7rem
+        text-transform: uppercase
+        letter-spacing: 0.5px
+        color: $purple-primary
+        font-weight: 600
+
+    .machine-tag
+        font-size: 1.4rem
+        font-weight: 800
+        color: #1a237e
+
+.info-section
+    display: flex
+    flex-direction: column
+    gap: 0.5rem
+
+    h3
+        display: flex
+        align-items: center
+        gap: 0.4rem
+        margin: 0
+        font-size: 0.9rem
+        font-weight: 600
+        color: $text-muted
+
+        mat-icon
+            font-size: 1.1rem
+            width: 1.1rem
+            height: 1.1rem
+
+.info-grid
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    gap: 0.85rem
+    background-color: $bg-card
+    padding: 0.9rem
+    border-radius: 12px
+
+.info-item
+    display: flex
+    flex-direction: column
+    gap: 0.15rem
+
+    &.full-width
+        grid-column: span 2
+
+    .info-label
+        font-size: 0.72rem
+        color: $text-muted
+
+    .info-value
+        font-size: 0.88rem
+        font-weight: 600
+        color: $text-dark
+        word-break: break-word
+
+.info-link
+    display: inline-flex
+    align-items: center
+    gap: 0.3rem
+    color: $purple-primary
+    font-weight: 600
+    font-size: 0.85rem
+    text-decoration: none
+    margin-top: 0.1rem
+
+    mat-icon
+        font-size: 1rem
+        width: 1rem
+        height: 1rem
+
+    &:hover
+        text-decoration: underline

@@ -1,1 +1,40 @@
-<p>delete-machine works!</p>
+<div class="delete-container">
+  <!-- Cabeçalho de Alerta -->
+  <div class="delete-header">
+    <div class="icon-warning">
+      <mat-icon>warning_amber</mat-icon>
+    </div>
+    <h2>Confirmar Exclusão</h2>
+  </div>
+
+  <mat-dialog-content class="delete-content">
+    <p class="description">
+      Tem certeza que deseja excluir o registro do inventário? Esta ação não poderá ser desfeita.
+    </p>
+
+    <!-- Card de Confirmação com os dados da máquina selecionada -->
+    <div class="machine-card">
+      <div class="machine-info">
+        <span class="label">Máquina</span>
+        <span class="machine-name">{{ data?.Nome_da_Maquina || 'N/A' }}</span>
+      </div>
+
+      <div class="user-info">
+        <span class="label">Usuário Responsável</span>
+        <span class="user-name">{{ data?.Usuario || '-' }}</span>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <!-- Ações do Modal -->
+  <div class="delete-actions">
+    <a mat-raised-button type="button" (click)="cancel()" class="btn-cancel">
+      Cancelar
+    </a>
+
+    <a mat-raised-button type="button" (click)="save()" class="btn-delete">
+      <mat-icon>delete</mat-icon>
+      Excluir Definitivamente
+    </a>
+  </div>
+</div>

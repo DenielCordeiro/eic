@@ -1,0 +1,98 @@
+<div class="machine-details-container">
+    <!-- Cabeçalho com Título, Botões de Ação (Ícones) e Fechar -->
+    <div class="details-header">
+        <div class="header-title">
+            <mat-icon class="title-icon">computer</mat-icon>
+            <h2>Detalhes do Ativo</h2>
+        </div>
+
+        <div class="header-actions">
+            <a mat-icon-button color="primary" (click)="updatingMachine()" title="Editar Máquina">
+                <mat-icon>edit</mat-icon>
+            </a>
+
+            <a mat-icon-button color="warn" (click)="deletingMachine()" title="Excluir Máquina">
+                <mat-icon>delete</mat-icon>
+            </a>
+
+            <a mat-icon-button (click)="cancel()" title="Fechar">
+                <mat-icon>close</mat-icon>
+            </a>
+        </div>
+    </div>
+
+    <mat-dialog-content class="details-content">
+        <!-- Tag da Máquina em Destaque -->
+        <div class="machine-badge-card">
+            <span class="label">Identificador da Máquina</span>
+            <span class="machine-tag">{{ this.data.Nome_da_Maquina || 'Sem Nome' }}</span>
+        </div>
+
+        <!-- Bloco 1: Responsável e Termo -->
+        <div class="info-section">
+            <h3><mat-icon>person</mat-icon> Responsável & Documentação</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Usuário</span>
+                    <span class="info-value">{{ this.data.Usuario || '-' }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">E-mail</span>
+                    <span class="info-value">{{ this.data.Email || '-' }}</span>
+                </div>
+                <div class="info-item full-width" *ngIf="this.data.Termo">
+                    <span class="info-label">Termo assinado</span>
+                    <a class="info-link" [href]="this.data.Termo" target="_blank" rel="noopener noreferrer">
+                        <mat-icon>description</mat-icon> Visualizar Termo
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bloco 2: Processamento e Memória -->
+        <div class="info-section">
+            <h3><mat-icon>memory</mat-icon> Processamento & Memória</h3>
+            <div class="info-grid">
+                <div class="info-item full-width">
+                    <span class="info-label">Processador</span>
+                    <span class="info-value">{{ this.data.Processador || '-' }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Quantidade de RAM</span>
+                    <span class="info-value">{{ this.data.Quantidade_de_RAM || '-' }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Geração da RAM</span>
+                    <span class="info-value">{{ this.data.Geracao_da_RAM || '-' }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Armazenamento</span>
+                    <span class="info-value">{{ this.data.Armazenamento || '-' }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Placa de Vídeo</span>
+                    <span class="info-value">{{ this.data.Placa_de_Video || '-' }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bloco 3: Placa-Mãe, Conectividade e SO -->
+        <div class="info-section">
+            <h3><mat-icon>developer_board</mat-icon> Placa-mãe & Conectividade</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Placa-mãe</span>
+                    <span class="info-value">{{ this.data.Placa_mae || '-' }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Conector de Rede</span>
+                    <span class="info-value">{{ this.data.Conector_de_Rede || '-' }}</span>
+                </div>
+                <div class="info-item full-width">
+                    <span class="info-label">Sistema Operacional</span>
+                    <span class="info-value">{{ this.data.Sistema_Operacional || '-' }}</span>
+                </div>
+            </div>
+        </div>
+    </mat-dialog-content>
+</div>
