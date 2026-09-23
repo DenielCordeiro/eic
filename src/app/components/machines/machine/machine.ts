@@ -5,7 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angu
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-import { MachineInterface } from '../../../models/machine.interface';
+import { MachineInterface } from '../../../interfaces/machine.interface';
 
 import { UpdateMachine } from '../update-machine/update-machine';
 import { DeleteMachine } from '../delete-machine/delete-machine';

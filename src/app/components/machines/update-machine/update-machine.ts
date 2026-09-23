@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 
 import { InventoryService } from '../../../services/inventory.service';
-import { MachineInterface } from '../../../models/machine.interface';
+import { MachineInterface } from '../../../interfaces/machine.interface';
 
 @Component({
     selector: 'app-update-machine',

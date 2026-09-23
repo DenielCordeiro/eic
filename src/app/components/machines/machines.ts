@@ -7,7 +7,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 import { InventoryService } from '../../services/inventory.service';
-import { MachineInterface } from '../../models/machine.interface';
+import { MachineInterface } from '../../interfaces/machine.interface';
 
 import { Machine } from './machine/machine';
 
