@@ -35,7 +35,6 @@ export class Machine {
 
     public updatingMachine(): void {
         const dialogRef = this.dialog.open(UpdateMachine, {
-            width: '600px',
             data: this.data
         });
 
@@ -46,7 +45,6 @@ export class Machine {
 
     public deletingMachine(): void {
         const dialogRef = this.dialog.open(DeleteMachine, {
-            width: '400px',
             data: this.data
         });
 

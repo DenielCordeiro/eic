@@ -56,7 +56,6 @@ export class Machines {
 
     public openMachineDetails(machine: MachineInterface): void {
         const dialogRef = this.dialog.open(Machine, {
-            width: '600px',
             data: machine
         });
 
