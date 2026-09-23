@@ -27,16 +27,16 @@
     } @else {
         <div class="card-list">
             @for (machine of machines(); track $index) {
-            <div class="asset-card">
-                <div class="card-left">
-                <span class="user-name">{{ machine.Usuario || 'Sem usuário' }}</span>
-                <span class="user-email">{{ machine.Email || 'Sem e-mail cadastrado' }}</span>
-                </div>
+                <div class="asset-card" (click)="openMachineDetails(machine)">
+                    <div class="card-left">
+                    <span class="user-name">{{ machine.Usuario || 'Sem usuário' }}</span>
+                    <span class="user-email">{{ machine.Email || 'Sem e-mail cadastrado' }}</span>
+                    </div>
 
-                <div class="card-right">
-                <h3 class="machine-title">{{ machine.Nome_da_Maquina || 'Máquina não identificada' }}</h3>
+                    <div class="card-right">
+                    <h3 class="machine-title">{{ machine.Nome_da_Maquina || 'Máquina não identificada' }}</h3>
+                    </div>
                 </div>
-            </div>
             }
         </div>
     }
