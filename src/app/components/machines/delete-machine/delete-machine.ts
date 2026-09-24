@@ -1,10 +1,11 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
+import { InventoryService } from '../../../services/inventory.service';
 import { MachineInterface } from '../../../interfaces/machine.interface';
 
 @Component({
@@ -20,6 +21,7 @@ import { MachineInterface } from '../../../interfaces/machine.interface';
     templateUrl: './delete-machine.html',
 })
 export class DeleteMachine {
+    private inventoryService: InventoryService = inject(InventoryService)
     constructor(
         public dialogRef: MatDialogRef<DeleteMachine>,
         @Inject(MAT_DIALOG_DATA) public data: MachineInterface // Dados da máquina
@@ -27,8 +29,16 @@ export class DeleteMachine {
         console.log('Dados da máquina para excluir:', this.data);
     }
 
-    public save(): void {
-        this.dialogRef.close(true);
+    public delitingMachine(): void {
+        this.inventoryService.deleteMachine(this.data.Nome_da_Maquina).subscribe({
+            next: () => {
+                alert('Máquina excluida com sucesso!');
+            },
+            error: (err) => {
+                console.error('Erro ao cadastrar máquina:', err);
+                alert('Ocorreu um erro ao salvar os dados.');
+            }
+        });
     }
 
     public cancel(): void {

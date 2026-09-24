@@ -1,16 +1,16 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, OnInit, OnDestroy, inject, ChangeDetectorRef } from '@angular/core';
+import { Router, RouterLink, NavigationEnd } from '@angular/router';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { filter, Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-header',
     standalone: true,
     imports: [
         RouterLink,
-        RouterLinkActive,
         MatToolbarModule,
         MatButtonModule,
         MatIconModule
@@ -18,10 +18,30 @@ import { MatIconModule } from '@angular/material/icon';
     styleUrl: './header.sass',
     templateUrl: './header.html',
 })
-export class Header {
-    public currentRoute: string = '/add-machine';
+export class Header implements OnInit, OnDestroy {
+    private router: Router = inject(Router);
+    private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-    public updateCurrentRoute(route: string): void {
-       this.currentRoute = route;
+    private routeSub!: Subscription;
+    public currentRoute: string = '';
+
+    ngOnInit(): void {
+        // 1. Pega a rota se ela já estiver disponível
+        this.currentRoute = this.router.url;
+
+        // 2. Escuta quando a navegação realmente CONCLUI (NavigationEnd)
+        this.routeSub = this.router.events
+            .pipe(filter(event => event instanceof NavigationEnd))
+            .subscribe((event: any) => {
+                this.currentRoute = event.urlAfterRedirects || event.url;
+                // Força o Angular a atualizar o HTML no mesmo ciclo de renderização
+                this.cdr.detectChanges();
+            });
+    }
+
+    ngOnDestroy(): void {
+        if (this.routeSub) {
+            this.routeSub.unsubscribe();
+        }
     }
 }
