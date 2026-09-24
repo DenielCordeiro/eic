@@ -19,9 +19,9 @@ import { MatIconModule } from '@angular/material/icon';
     templateUrl: './header.html',
 })
 export class Header {
-    public currentRoute: string = window.location.pathname;
+    public currentRoute: string = '/add-machine';
 
-    public updateCurrentRoute(route: string): string {
-       return this.currentRoute = route;
+    public updateCurrentRoute(route: string): void {
+       this.currentRoute = route;
     }
 }
