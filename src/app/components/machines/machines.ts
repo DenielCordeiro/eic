@@ -37,21 +37,21 @@ export class Machines {
     ngOnInit(): void {
         this.loadMachines(false);
     }
+
     loadMachines(forceRefresh: boolean): void {
         this.loading.set(true);
         this.error.set(null);
 
-        this.inventoryService.getMachines(forceRefresh).subscribe({
-            next: (data) => {
+        this.inventoryService.getMachines(forceRefresh)
+            .then((data) => {
                 this.machines.set(data);
                 this.loading.set(false);
-            },
-            error: (err) => {
-                console.error('Erro ao buscar inventário:', err);
+            })
+            .catch(error => {
+                console.error('Erro ao buscar inventário:', error);
                 this.error.set('Não foi possível carregar o inventário.');
                 this.loading.set(false);
-            }
-        });
+            })
     }
 
     public openMachineDetails(machine: MachineInterface): void {

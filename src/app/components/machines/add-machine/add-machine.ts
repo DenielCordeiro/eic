@@ -51,15 +51,15 @@ export class AddMachine implements OnInit {
 
     onSubmit(): void {
         if (this.machineForm.valid) {
-            this.inventoryService.addMachine(this.machineForm.value).subscribe({
-                next: () => {
-                    alert('Máquina cadastrada com sucesso!');
-                },
-                error: (err) => {
-                    console.error('Erro ao cadastrar máquina:', err);
-                    alert('Ocorreu um erro ao salvar os dados.');
-                }
-            });
+            this.inventoryService.addMachine(this.machineForm.value)
+                .then(response => {
+                    console.log('Máquina atualizada com sucesso:', response);
+                    this.machineForm.reset();
+                    this.inventoryService.getMachines();
+                })
+                .catch(error => {
+                    console.log('Mensagem de erro:', error);
+                })
         }
     }
 }

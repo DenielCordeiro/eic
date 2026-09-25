@@ -38,8 +38,10 @@ export class Machine {
             data: this.data
         });
 
-        dialogRef.afterClosed().subscribe((updated) => {
-            console.log('Diálogo de atualização fechado. Atualizado:', updated);
+        dialogRef.afterClosed().subscribe((updated: boolean) => {
+            if (updated == true) {
+                this.dialogRef.close(true);
+            }
         });
     }
 
@@ -48,8 +50,10 @@ export class Machine {
             data: this.data
         });
 
-        dialogRef.afterClosed().subscribe((confirmed) => {
-            console.log('Diálogo de exclusão fechado. Confirmação:', confirmed);
+        dialogRef.afterClosed().subscribe((deleted) => {
+            if (deleted == true) {
+                this.dialogRef.close(true);
+            }
         });
     }
 

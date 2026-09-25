@@ -30,15 +30,15 @@ export class DeleteMachine {
     }
 
     public delitingMachine(): void {
-        this.inventoryService.deleteMachine(this.data.Nome_da_Maquina).subscribe({
-            next: () => {
-                alert('Máquina excluida com sucesso!');
-            },
-            error: (err) => {
-                console.error('Erro ao cadastrar máquina:', err);
-                alert('Ocorreu um erro ao salvar os dados.');
-            }
-        });
+        this.inventoryService.deleteMachine(this.data.Nome_da_Maquina)
+            .then(response => {
+                console.log(response);
+                this.inventoryService.getMachines();
+                this.dialogRef.close(true);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     public cancel(): void {

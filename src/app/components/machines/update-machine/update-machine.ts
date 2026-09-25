@@ -33,48 +33,45 @@ export class UpdateMachine implements OnInit {
 
     constructor(
         public dialogRef: MatDialogRef<UpdateMachine>,
-        @Inject(MAT_DIALOG_DATA) public data: MachineInterface // Dados da máquina
-    ) {
-        console.log('Dados da máquina para editar:', this.data);
-    }
+        @Inject(MAT_DIALOG_DATA) public data: MachineInterface
+    ) {}
 
     ngOnInit(): void {
         this.machineForm = this.buildForm();
     }
 
     private buildForm(): FormGroup {
-        return this.formBuilder.group({
-            Usuario: [''],
-            Email: ['', Validators.email],
-            Nome_da_Maquina: [''],
-            Sistema_Operacional: [''],
-            Placa_mae: [''],
-            Processador: [''],
-            Armazenamento: [''],
-            Placa_de_Video: [''],
-            Conector_de_Rede: [''],
-            Quantidade_de_RAM: [''],
-            Geracao_da_RAM: [''],
-            Termo: ['']
+        return this.machineForm = this.formBuilder.group({
+            Usuario: [this.data?.Usuario || ''],
+            Email: [this.data?.Email || ''],
+            Nome_da_Maquina: [{ value: this.data?.Nome_da_Maquina || '', disabled: true }, [Validators.required]], // Nome como chave primária (desabilitado para edição)
+            Sistema_Operacional: [this.data?.Sistema_Operacional || ''],
+            Placa_mae: [this.data?.Placa_mae || ''],
+            Processador: [this.data?.Processador || ''],
+            Armazenamento: [this.data?.Armazenamento || ''],
+            Placa_de_Video: [this.data?.Placa_de_Video || ''],
+            Conector_de_Rede: [this.data?.Conector_de_Rede || ''],
+            Quantidade_de_RAM: [this.data?.Quantidade_de_RAM || ''],
+            Geracao_da_RAM: [this.data?.Geracao_da_RAM || ''],
+            Termo: [this.data?.Termo || '']
         });
     }
 
     public onSubmit(): void {
         if (this.machineForm.valid) {
-            this.inventoryService.updateMachine(this.machineForm.value).subscribe({
-                next: () => {
-                    alert('Máquina atualizada com sucesso!');
-                },
-                error: (err) => {
+            const updatedData: MachineInterface = this.machineForm.getRawValue();
+
+            this.inventoryService.updateMachine(updatedData)
+                .then(response => {
+                    console.log(response)
+                    this.inventoryService.getMachines();
+                    this.dialogRef.close(true);
+                })
+                .catch((err) => {
                     console.error('Erro ao cadastrar máquina:', err);
                     alert('Ocorreu um erro ao salvar os dados.');
-                }
-            });
+                })
         }
-    }
-
-    public save(): void {
-        this.dialogRef.close(true);
     }
 
     public cancel(): void {
